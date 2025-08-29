@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
-import { MeshGradient } from "@paper-design/shaders-react"
+// import { MeshGradient } from "@paper-design/shaders-react"
 
 interface ShaderBackgroundProps {
   children: React.ReactNode
@@ -61,20 +61,31 @@ export function ShaderBackground({ children }: ShaderBackgroundProps) {
         </defs>
       </svg>
 
-      {/* Background Shaders */}
-      <MeshGradient
+      {/* Background Shaders - Tymczasowo zastąpione CSS gradientem */}
+      <div 
         className="absolute inset-0 w-full h-full"
-        colors={["#000000", "#1e40af", "#ffffff", "#0f172a", "#1e3a8a"]}
-        speed={0.3}
-        backgroundColor="#000000"
+        style={{
+          background: 'linear-gradient(45deg, #000000, #1e40af, #ffffff, #0f172a, #1e3a8a)',
+          backgroundSize: '400% 400%',
+          animation: 'gradientShift 15s ease infinite',
+        }}
       />
-      <MeshGradient
+      <div 
         className="absolute inset-0 w-full h-full opacity-60"
-        colors={["#000000", "#ffffff", "#f97316", "#000000"]}
-        speed={0.2}
-        wireframe="true"
-        backgroundColor="transparent"
+        style={{
+          background: 'linear-gradient(135deg, #000000, #ffffff, #f97316, #000000)',
+          backgroundSize: '300% 300%',
+          animation: 'gradientShift 20s ease infinite reverse',
+        }}
       />
+
+      <style jsx>{`
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
 
       {children}
     </div>

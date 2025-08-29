@@ -1,13 +1,39 @@
 "use client"
 
-import { ShaderBackground } from "@/components/shader-background"
+// import { ShaderBackground } from "@/components/shader-background"
 import { Header } from "@/components/header"
 import { Button } from "@/components/ui/button"
 import { CheckCircle, Zap, Code, Database, ArrowRight, Clock, DollarSign, Shield, Star } from "lucide-react"
 
 export default function BaseLinkerPage() {
   return (
-    <ShaderBackground>
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Tymczasowy gradient background */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          background: 'linear-gradient(45deg, #000000, #1e40af, #ffffff, #0f172a, #1e3a8a)',
+          backgroundSize: '400% 400%',
+          animation: 'gradientShift 15s ease infinite',
+        }}
+      />
+      <div 
+        className="absolute inset-0 w-full h-full opacity-60"
+        style={{
+          background: 'linear-gradient(135deg, #000000, #ffffff, #f97316, #000000)',
+          backgroundSize: '300% 300%',
+          animation: 'gradientShift 20s ease infinite reverse',
+        }}
+      />
+
+      <style jsx>{`
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
+
       <Header />
 
       <main className="relative z-20">
@@ -473,6 +499,6 @@ export default function BaseLinkerPage() {
           </div>
         </section>
       </main>
-    </ShaderBackground>
+    </div>
   )
 }
